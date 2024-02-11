@@ -1,2 +1,2 @@
-# Short Programming Project:
-Visualize collaboration among developers worldwide
+# Short Programming Project: Visualize collaboration among developers worldwide
+
