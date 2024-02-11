@@ -4,7 +4,7 @@ import { Octokit } from '@octokit/rest';
 import { createProject } from './projects.js';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 export const createUser = async (req, res) => {

@@ -4,7 +4,7 @@ import { Octokit } from '@octokit/rest';
 import axios from 'axios';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 const apiKey = "AIzaSyCsYvd4WAyrngOoTdmfIxVgr9IruQ1y2K4";
@@ -23,9 +23,9 @@ export const getContributors = async (req, res) => {
             }
         });
         const contributors = ret_project[0].contributors;
-        // console.log(contributors);
 
         for (let i = 0; i < contributors.length; i++) {
+            console.log(contributors[i]);
             const { data: user } = await octokit.users.getByUsername({
                 username: contributors[i],
             });
