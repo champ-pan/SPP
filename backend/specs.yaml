@@ -1,0 +1,231 @@
+openapi: "3.0.2"
+info:
+  title: Backend API
+  version: "1.0.0"
+servers:
+  - url: http://localhost:5000
+    description: Local server
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - username
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        :
+          type: string
+        projects:
+          type: array
+          items:
+            type: string
+    
+    Project:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+
+        name:
+          type: string
+        description:
+          type: string
+        users:
+          type: array
+          items:
+            type: string
+
+    Projects:
+      type: array
+      items:
+        $ref: "#/components/schemas/Project"
+
+    Users:
+      type: array
+      items:
+        $ref: "#/components/schemas/User"
+
+  responses:
+    BadRequest:
+      description: Request was not well-formed, see error details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error-message:
+                type: string
+                description: Error message detailing the problem with the request
+
+        text/csv:
+          schema:
+            type: object
+            properties:
+              error-message:
+                type: string
+                description: Error message detailing the problem with the request.
+
+    NotFound:
+      description: Resource not found
+
+    NoResults:
+      description: List empty; no results
+
+    ServerError:
+      description: Server error; no results, try again later
+
+  parameters:
+    id:
+      name: id
+      in: path
+      description: User id
+      required: true
+      schema:
+        type: string
+    
+    username:
+      name: username
+      in: query
+      description: User name
+      required: false
+      schema:
+        type: string
+    
+    country:
+      name: country
+      in: query
+      description: User country
+      required: false
+      schema:
+        type: string
+
+paths:
+  /users:
+    get:
+      summary: Get all users
+      description: Get all users
+      operationId: getAllUsers
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Users"
+            text/csv:
+              schema:
+                type: string
+                description: CSV file with users
+        "204":
+          $ref: "#/components/responses/NoResults"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /user:
+    post:
+      summary: Create user
+      description: Create user
+      operationId: createUser
+      requestBody:
+        description: User to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+            text/csv:
+              schema:
+                type: string
+                description: CSV file with user
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+  /user/{id}:
+
+    get:
+      summary: Get user by id
+      description: Get user by id
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+            text/csv:
+              schema:
+                type: string
+                description: CSV file with user
+        "204":
+          $ref: "#/components/responses/NoResults"
+        "500":
+          $ref: "#/components/responses/ServerError"
+    
+    put:
+      summary: Update user by id
+      description: Update user by id
+      operationId: updateUserById
+      parameters:
+        - name: id
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+            text/csv:
+              schema:
+                type: string
+                description: CSV file with user
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/ServerError"
+
+    delete:
+      summary: Delete user by id
+      description: Delete user by id
+      operationId: deleteUserById
+      parameters:
+        - name: id
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: User deleted
+        "500":
+          $ref: "#/components/responses/ServerError"
