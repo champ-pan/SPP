@@ -4,7 +4,7 @@ import { Octokit } from '@octokit/rest';
 import axios from 'axios';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 const apiKey = "AIzaSyCsYvd4WAyrngOoTdmfIxVgr9IruQ1y2K4";

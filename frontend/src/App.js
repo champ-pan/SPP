@@ -70,12 +70,14 @@ const App = () => {
             height: '100vh',
             flexDirection: 'column',
           }} className='font'>
+            <h1 className='font'>Welcome to Git-Connect</h1>
+            <p className='font'>Please enter your GitHub username to get started</p>
             <FloatingLabel
               controlId="floatingInput"
               label="Username"
               className="mb-3"
             >
-              <Form.Control type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+              <Form.Control className="font input" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
             </FloatingLabel>
             <Button className="nextButton rounded-pill" onClick={validate} size="md">
               Log In 

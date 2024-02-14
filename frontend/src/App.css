@@ -66,3 +66,8 @@ body {
 .backgr {
   background-color: #cae9f3;
 }
+
+.input {
+  background-color: #cae9f3;
+  border-color: #282c34;
+}

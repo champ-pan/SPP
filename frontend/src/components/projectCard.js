@@ -91,7 +91,7 @@ const ProjectCard = ({ project: { id, name, description, owner } }) => {
                                             <td>{contributor.username}</td>
                                             <td>{contributor.location.city}</td>
                                             <td>{contributor.location.countryCode}</td>
-                                            <td>{!contributor.time_zone_difference ? "0+" : contributor.time_zone_difference} hours</td>
+                                            <td>{contributor.time_zone_difference} hours</td>
                                         </tr>
                                     </>))}
                                 </tbody>
