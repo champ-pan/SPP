@@ -4,8 +4,9 @@ import { Octokit } from '@octokit/rest';
 import { createProject } from './projects.js';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
+
 
 export const createUser = async (req, res) => {
 
@@ -80,6 +81,6 @@ export const createUser = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-    }   
+    }
 
 }

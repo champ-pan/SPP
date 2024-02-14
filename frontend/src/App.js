@@ -53,7 +53,6 @@ const App = () => {
   }
 
   const handleNext = () => {
-    console.log(user);
     setTimeout(() => {
       setNext(true);
     }, 1000);

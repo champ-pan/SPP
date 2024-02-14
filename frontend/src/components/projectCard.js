@@ -7,6 +7,7 @@ import ReactCountryFlag from "react-country-flag"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
+import '../App.css';
 
 const URL = "http://localhost:5000/";
 const collaborators = URL + "contributors/";
@@ -52,7 +53,7 @@ const ProjectCard = ({ project: { id, name, description, owner } }) => {
 
     return (
         <>
-            <Card className="mt-4 col-md-3 " style={{ width: '18rem' }}>
+            <Card className="mt-4 col-md-3 box" style={{ width: '18rem' }}>
                 <Card.Body>
                     <Button className="nextButton rounded-pill font mb-2" onClick={handleShow} size="sm">
                         {project.name}
@@ -67,7 +68,7 @@ const ProjectCard = ({ project: { id, name, description, owner } }) => {
                 </Card.Body>
             </Card>
 
-            <Modal className="font" show={viewProject} onHide={handleClose}>
+            <Modal className="font" show={viewProject} onHide={handleClose} size='50'>
                 <Modal.Header >
                     <Modal.Title>{name}</Modal.Title>
                 </Modal.Header>

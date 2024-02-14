@@ -71,3 +71,8 @@ body {
   background-color: #cae9f3;
   border-color: #282c34;
 }
+
+/* Box shadow */
+.box {
+  box-shadow: 1px 1px 10px 0px #626161;
+}

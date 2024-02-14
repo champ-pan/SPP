@@ -23,7 +23,7 @@ const Home = (params) => {
             <div>
                 <Paper elevation={5} className='nextButton'>
                     <div>
-                        <h1 className='font'>Welcome {params.user.username} to your <br></br> Projects</h1>
+                        <h1 className='font'>Welcome to your projects<br></br>{params.user.username}</h1>
                         <h4>Location: {params.user.location}</h4>
                     </div>
                 </Paper>
