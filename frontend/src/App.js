@@ -7,6 +7,8 @@ import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Home from './components/home';
+import Col from 'react-bootstrap/esm/Col';
+import Row from 'react-bootstrap/esm/Row';
 
 const URL = "http://localhost:5000/";
 const usersURL = URL + "user/";
@@ -79,7 +81,7 @@ const App = () => {
               <Form.Control className="font input" type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
             </FloatingLabel>
             <Button className="nextButton rounded-pill" onClick={validate} size="md">
-              Log In 
+              Log In / Sign Up
             </Button>
           </div>
         </>}
