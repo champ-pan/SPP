@@ -17,3 +17,25 @@ location of the collaborators of your projects. Also, it provides the time diffe
 - Node.js, Express.js and Javascript for the backend
 - React.js, CSS and Javascript for the frontend
 - MongoDB for the database
+
+## Installation
+
+1. Clone the repository: https://github.com/champ-pan/SPP.git
+2. Start server
+   - cd backend
+   - npm run dev
+3. Start frontend
+   - cd frontend
+   - npm start
+
+
+## Usage
+
+- When you run the application you first see a sign-up/login page
+- If it is your first time using the application enter your GitHub username and press the sign-up/login button to create a user in the database
+- If it is not your first time do the same thing as above but now you will log in
+- On the next page you will see all your GitHub projects, your username and your self-reported location (if any)
+- Every project has attributes the name of the project, a description and the owner of this project.
+- You can browse through your projects by pressing the name of the project of your choice
+- A modal will appear with all of your project's contributors (if any)
+- The modal contains the username of the contributor the location (city, county) (if any) and the time difference between their location and your location
