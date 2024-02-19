@@ -32,7 +32,8 @@ location of the collaborators of your projects. Also, it provides the time diffe
 ## Usage
 
 - When you run the application you first see a sign-up/login page
-- If it is your first time using the application enter your GitHub username and press the sign-up/login button to create a user in the database
+- If it is your first time using the application enter your GitHub username and press the sign-up/login button to create your user in the database
+- By creating your user you also store your projects in the database
 - If it is not your first time do the same thing as above but now you will log in
 - On the next page you will see all your GitHub projects, your username and your self-reported location (if any)
 - Every project has attributes the name of the project, a description and the owner of this project.
