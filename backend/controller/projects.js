@@ -1,11 +1,9 @@
 import project from '../models/project.js';
 export const getProjects = async (req, res) => {
   const username = req.body.username;
-  // console.log("username:" + username);
   try{
     const Projects= await project.find({owner:(username)})
     res.status(200).json(Projects);
-    // console.log(Projects);
   }catch(error){
     res.status(409).json({message:error.message});
   }

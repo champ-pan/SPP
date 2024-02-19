@@ -4,7 +4,7 @@ import { Octokit } from '@octokit/rest';
 import axios from 'axios';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 const apiKey = "AIzaSyCsYvd4WAyrngOoTdmfIxVgr9IruQ1y2K4";
@@ -51,7 +51,6 @@ export const getContributors = async (req, res) => {
                 for (let i = 0; i < location.length; i++) {
                     if (location[i] == ",") {
                         new_location.city = location.substring(0, i);
-                        //make the country code the country name if the country code is not available
                         new_location.countryCode = location.substring(i + 2, location.length);
                         break;
                     }
@@ -59,19 +58,13 @@ export const getContributors = async (req, res) => {
                 console.log(new_location);
 
                 const timeZone2 = await getTimeZone(new_location.coordinates);
-                // console.log(timeZone2);
 
                 // Get the current UTC time
                 const currentTime = new Date()
-                // console.log("current: " + currentTime);
 
-                //print out timeZone2 time in UTC time zone format 
                 const timeZone2Time = new Date(currentTime.getTime() + timeZone2.rawOffset * 1000)
-                // console.log("timeZone2: " + timeZone2Time);
-
-                // Get the time zone difference in hours
+                
                 time_zone_difference = (timeZone2Time.getTime() - currentTime.getTime()) / 1000 / 60 / 60;
-                // console.log("time_zone_difference: " + time_zone_difference);
                 newUser.time_zone_difference = time_zone_difference;
                 newUser.location = new_location;
             }
@@ -84,19 +77,15 @@ export const getContributors = async (req, res) => {
 }
 
 async function getTimeZone(location) {
-    // console.log(location);
     try {
 
-        // Get the current timestamp
         const timestamp = Math.floor(Date.now() / 1000);
 
-        // Get the time zone data for the location
         const url = `https://maps.googleapis.com/maps/api/timezone/json?location=${location.latitude},${location.longitude}&timestamp=${timestamp}&key=${apiKey}`;
         const response = await axios.get(url);
         const data = response.data;
 
         if (data.status === 'OK') {
-            // console.log(data);
             const timeZoneId = data.timeZoneId;
             const timeZoneName = data.timeZoneName;
             const rawOffset = data.rawOffset;
