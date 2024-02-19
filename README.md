@@ -24,6 +24,18 @@ location of the collaborators of your projects. Also, it provides the time diffe
 2. Start server
    - cd backend
    - npm run dev
+   If you get an error like Module Not Found make sure you have install the dependencies mention below with the command `npm install [name of the dependency]`
+   -`"dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "async": "^3.2.5",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "gh": "^2.8.9",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.4",
+    "octokit": "^3.1.2",
+    "smee": "^0.2.0"
+  }`
 3. Start frontend
    - cd frontend
    - npm start
