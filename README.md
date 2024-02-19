@@ -21,11 +21,18 @@ location of the collaborators of your projects. Also, it provides the time diffe
 ## Installation
 
 1. Clone the repository: https://github.com/champ-pan/SPP.git
-2. Start server
-   - cd backend
-   - npm run dev
-   If you get an error like Module Not Found make sure you have install the dependencies mention below with the command `npm install [name of the dependency]`
-   -`"dependencies": {
+2. Make sure to create an authorization token on GitHub to change mine in the backend/controller/contributor.js and backend/controller/user.js
+   
+   `const octokit = new Octokit({
+    auth: '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'
+   })`
+   
+4. Start server
+   - `cd backend`
+   - `npm run dev`
+   If you get an error like Module Not Found make sure you have installed the dependencies mentioned below with the command `npm install [name of the dependency]`
+
+   `"dependencies": {
     "@octokit/rest": "^20.0.2",
     "async": "^3.2.5",
     "cors": "^2.8.5",
@@ -36,9 +43,25 @@ location of the collaborators of your projects. Also, it provides the time diffe
     "octokit": "^3.1.2",
     "smee": "^0.2.0"
   }`
-3. Start frontend
-   - cd frontend
-   - npm start
+5. Start frontend
+   - `cd frontend`
+   - `npm start`
+     If you get an error like Module Not Found make sure you have install the dependencies mention below with the command `npm install [name of the dependency]`
+  
+   `"dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.6",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.9.2",
+    "react-country-flag": "^3.1.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  }`
 
 
 ## Usage
