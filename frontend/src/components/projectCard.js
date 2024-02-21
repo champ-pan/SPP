@@ -36,7 +36,6 @@ const ProjectCard = ({ project: { id, name, description, owner } }) => {
                 })
             });
             const data = await res.json();
-            console.log(data);
             // sort data by time zone difference in ascending order 
             data.sort((a, b) => a.time_zone_difference - b.time_zone_difference);
             setContributors(data);
@@ -68,7 +67,7 @@ const ProjectCard = ({ project: { id, name, description, owner } }) => {
                 </Card.Body>
             </Card>
 
-            <Modal className="font" show={viewProject} onHide={handleClose} size='50'>
+            <Modal className="font" show={viewProject} onHide={handleClose} size='lg' centered>
                 <Modal.Header >
                     <Modal.Title>{name}</Modal.Title>
                 </Modal.Header>
@@ -90,9 +89,11 @@ const ProjectCard = ({ project: { id, name, description, owner } }) => {
                                     {contributors.map((contributor) => (<>
                                         <tr>
                                             <td>{contributor.username}</td>
-                                            <td>{contributor.location.city}</td>
-                                            <td>{contributor.location.countryCode}</td>
-                                            <td>{contributor.time_zone_difference} hours</td>
+                                            <td>{contributor.location.city != "" ? 
+                                                <p>{contributor.location.city}</p> : <p>--</p>}</td>
+                                            <td>{contributor.location.city != "" ? 
+                                                <p>{contributor.location.countryCode} </p> : <p>--</p>}</td>
+                                            <td>{contributor.location.city != "" ? <p>{contributor.time_zone_difference} hours</p> : <p>--</p>}</td>
                                         </tr>
                                     </>))}
                                 </tbody>

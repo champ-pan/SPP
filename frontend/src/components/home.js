@@ -13,11 +13,6 @@ const projectsURL = URL + "projects/";
 
 const Home = (params) => {
 
-    useEffect(() => {
-        console.log(params);
-    }
-        , []);
-
     return (
         <>
             <div>

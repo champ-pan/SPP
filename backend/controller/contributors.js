@@ -4,7 +4,7 @@ import { Octokit } from '@octokit/rest';
 import axios from 'axios';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 const apiKey = "AIzaSyCsYvd4WAyrngOoTdmfIxVgr9IruQ1y2K4";
@@ -25,7 +25,6 @@ export const getContributors = async (req, res) => {
         const contributors = ret_project[0].contributors;
 
         for (let i = 0; i < contributors.length; i++) {
-            console.log(contributors[i]);
             const { data: user } = await octokit.users.getByUsername({
                 username: contributors[i],
             });
@@ -40,12 +39,12 @@ export const getContributors = async (req, res) => {
                 }
             }
             let time_zone_difference = 0;
+            let flag = 0;
             let newUser = {
                 username: username,
                 location: new_location,
                 time_zone_difference: time_zone_difference,
             }
-            console.log(location);
             if (location != null) {
                 new_location.coordinates = await getCoordinates(location)
                 for (let i = 0; i < location.length; i++) {
@@ -55,17 +54,27 @@ export const getContributors = async (req, res) => {
                         break;
                     }
                 }
-                console.log(new_location);
 
-                const timeZone2 = await getTimeZone(new_location.coordinates);
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].location.countryCode == new_location.countryCode) {
+                        flag = 1;
+                        time_zone_difference = users[i].time_zone_difference;
+                        newUser.time_zone_difference = time_zone_difference;
+                        break;
+                    }
+                }
 
-                // Get the current UTC time
-                const currentTime = new Date()
+                if (flag == 0) {
+                    const timeZone2 = await getTimeZone(new_location.coordinates);
 
-                const timeZone2Time = new Date(currentTime.getTime() + timeZone2.rawOffset * 1000)
-                
-                time_zone_difference = (timeZone2Time.getTime() - currentTime.getTime()) / 1000 / 60 / 60;
-                newUser.time_zone_difference = time_zone_difference;
+                    // Get the current UTC time
+                    const currentTime = new Date()
+
+                    const timeZone2Time = new Date(currentTime.getTime() + timeZone2.rawOffset * 1000)
+
+                    time_zone_difference = (timeZone2Time.getTime() - currentTime.getTime()) / 1000 / 60 / 60;
+                    newUser.time_zone_difference = time_zone_difference - 1;
+                }
                 newUser.location = new_location;
             }
             users.push(newUser);
@@ -102,7 +111,6 @@ async function getTimeZone(location) {
 }
 
 async function getCoordinates(location) {
-    // console.log("User Location: " + location)
     try {
         const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
             params: {

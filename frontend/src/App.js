@@ -36,7 +36,6 @@ const App = () => {
     }
   }
 
-  //make a request to send the username to the backend to create a user and get the user's data back
   const getUsers = async () => {
     try {
       const res = await fetch(usersURL, {

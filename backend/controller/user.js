@@ -4,7 +4,7 @@ import { Octokit } from '@octokit/rest';
 import { createProject } from './projects.js';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 
@@ -16,7 +16,6 @@ export const createUser = async (req, res) => {
         //check if user already exists
         const userExists = await User.findOne({ username: username });
         if (userExists) {
-            console.log("userExists")
             return res.status(200).json(userExists);
         }
 
