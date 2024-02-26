@@ -4,7 +4,7 @@ import { Octokit } from '@octokit/rest';
 import { createProject } from './projects.js';
 
 const octokit = new Octokit({
-    auth: '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'
+    auth: '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'
 })
 
 
